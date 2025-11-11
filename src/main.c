@@ -1,6 +1,5 @@
 #include "array-list.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 void print_list(ArrayList *list) {
   for (int i = 0; i < list->len; i++) {

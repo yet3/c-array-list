@@ -22,6 +22,5 @@ bool ArrayList_pop(ArrayList *);
 bool ArrayList_append(ArrayList *, void *);
 bool ArrayList_replace(ArrayList *, size_t, void *);
 void *ArrayList_at(ArrayList *, size_t);
-size_t ArrayList_len(ArrayList *);
 
 #endif
