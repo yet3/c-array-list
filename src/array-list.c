@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-bool tryToUpsize(ArrayList *list) {
+bool try_to_upsize(ArrayList *list) {
   if (list->len >= list->capicity) {
     if (!ArrayList_resize(list, list->capicity * 2)) {
       return false;
@@ -13,7 +13,7 @@ bool tryToUpsize(ArrayList *list) {
   return true;
 }
 
-bool tryToDownsize(ArrayList *list) {
+bool try_to_downsize(ArrayList *list) {
   if (list->len <= list->capicity / 2 && list->capicity > list->init_capicity) {
     if (!ArrayList_resize(list, list->capicity / 2)) {
       return false;
@@ -23,7 +23,7 @@ bool tryToDownsize(ArrayList *list) {
   return false;
 }
 
-bool isIdxInBounds(ArrayList *list, size_t idx) {
+bool is_idx_in_bounds(ArrayList *list, size_t idx) {
   if (idx < 0 || idx >= list->len) {
     printf("Index out of bounds: Trying to access index %zu\n in list of "
            "length %zu\n",
@@ -33,7 +33,7 @@ bool isIdxInBounds(ArrayList *list, size_t idx) {
   return true;
 }
 
-bool isListEmpty(ArrayList *list) {
+bool is_list_empty(ArrayList *list) {
   if (list->len == 0) {
     printf("The list is empty, nothing to do\n");
     return true;
@@ -81,13 +81,13 @@ bool ArrayList_resize(ArrayList *list, size_t capicity) {
 }
 
 bool ArrayList_pop(ArrayList *list) {
-  if (isListEmpty(list)) {
+  if (is_list_empty(list)) {
     return false;
   }
 
   list->len--;
 
-  if (!tryToDownsize(list)) {
+  if (!try_to_downsize(list)) {
     return false;
   }
 
@@ -95,7 +95,7 @@ bool ArrayList_pop(ArrayList *list) {
 }
 
 bool ArrayList_remove(ArrayList *list, size_t idx) {
-  if (!isIdxInBounds(list, idx)) {
+  if (!is_idx_in_bounds(list, idx)) {
     return false;
   }
 
@@ -108,7 +108,7 @@ bool ArrayList_remove(ArrayList *list, size_t idx) {
   memcpy(dest, src, list->item_size * (list->len - idx + 2));
   list->len--;
 
-  if (!tryToDownsize(list)) {
+  if (!try_to_downsize(list)) {
     return false;
   }
 
@@ -116,7 +116,7 @@ bool ArrayList_remove(ArrayList *list, size_t idx) {
 }
 
 bool ArrayList_append(ArrayList *list, void *item) {
-  if (!tryToUpsize(list)) {
+  if (!try_to_upsize(list)) {
     return false;
   }
 
@@ -128,7 +128,7 @@ bool ArrayList_append(ArrayList *list, void *item) {
 }
 
 bool ArrayList_replace(ArrayList *list, size_t idx, void *item) {
-  if (!isIdxInBounds(list, idx) || isListEmpty(list)) {
+  if (!is_idx_in_bounds(list, idx) || is_list_empty(list)) {
     return false;
   }
 
@@ -139,7 +139,7 @@ bool ArrayList_replace(ArrayList *list, size_t idx, void *item) {
 }
 
 void *ArrayList_at(ArrayList *list, size_t idx) {
-  if (!isIdxInBounds(list, idx)) {
+  if (!is_idx_in_bounds(list, idx)) {
     return NULL;
   }
 
