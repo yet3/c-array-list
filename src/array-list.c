@@ -24,7 +24,7 @@ bool try_to_downsize(ArrayList *list) {
 }
 
 bool is_idx_in_bounds(ArrayList *list, size_t idx) {
-  if (idx < 0 || idx >= list->len) {
+  if (idx >= list->len) {
     printf("Index out of bounds: Trying to access index %zu\n in list of "
            "length %zu\n",
            idx, list->len);
