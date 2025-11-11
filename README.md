@@ -1,6 +1,5 @@
 # C ArrayList
 
-[main.c](./src/main.c)
 ```c
   ArrayList *list = ArrayList_init(5, sizeof(int));
 
