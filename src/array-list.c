@@ -25,9 +25,10 @@ bool try_to_downsize(ArrayList *list) {
 
 bool is_idx_in_bounds(ArrayList *list, size_t idx) {
   if (idx >= list->len) {
-    printf("Index out of bounds: Trying to access index %zu\n in list of "
-           "length %zu\n",
-           idx, list->len);
+    fprintf(stderr,
+            "Index out of bounds: Trying to access index %zu\n in list of "
+            "length %zu\n",
+            idx, list->len);
     return false;
   }
   return true;
@@ -35,7 +36,7 @@ bool is_idx_in_bounds(ArrayList *list, size_t idx) {
 
 bool is_list_empty(ArrayList *list) {
   if (list->len == 0) {
-    printf("The list is empty, nothing to do\n");
+    fprintf(stderr, "The list is empty, nothing to do\n");
     return true;
   }
   return false;
@@ -64,9 +65,10 @@ void ArrayList_clear(ArrayList *list) {
 
 bool ArrayList_resize(ArrayList *list, size_t capicity) {
   if (list->len > capicity) {
-    printf("Error resizing list's capicity, length of the list %zu, is bigger "
-           "then target capicity of %zu\n",
-           list->len, capicity);
+    fprintf(stderr,
+            "Error resizing list's capicity, length of the list %zu, is bigger "
+            "then target capicity of %zu\n",
+            list->len, capicity);
     return false;
   }
 
@@ -74,7 +76,7 @@ bool ArrayList_resize(ArrayList *list, size_t capicity) {
   list->p_data = realloc(list->p_data, list->item_size * capicity);
 
   if (list->p_data == NULL) {
-    printf("Error re-allocating list's data memory\n");
+    fprintf(stderr, "Error re-allocating list's data memory\n");
     return false;
   }
   return true;
