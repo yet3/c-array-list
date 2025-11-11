@@ -43,24 +43,17 @@ bool isListEmpty(ArrayList *list) {
 
 //
 
-ArrayList *ArrayList_init(size_t capicity, size_t item_size) {
-  ArrayList *list = malloc(sizeof(ArrayList));
-
-  *list = (ArrayList){
+ArrayList ArrayList_init(size_t capicity, size_t item_size) {
+  return (ArrayList){
       .init_capicity = capicity,
       .capicity = capicity,
       .len = 0,
       .p_data = calloc(capicity, item_size),
       .item_size = item_size,
   };
-
-  return list;
 }
 
-void ArrayList_free(ArrayList *list) {
-  free(list->p_data);
-  free(list);
-}
+void ArrayList_free(ArrayList *list) { free(list->p_data); }
 
 void ArrayList_clear(ArrayList *list) {
   free(list->p_data);
@@ -152,5 +145,3 @@ void *ArrayList_at(ArrayList *list, size_t idx) {
 
   return &list->p_data[idx * list->item_size];
 }
-
-size_t ArrayList_len(ArrayList *list) { return list->len; }

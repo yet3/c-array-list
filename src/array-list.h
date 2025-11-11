@@ -12,7 +12,7 @@ typedef struct {
   size_t item_size;
 } ArrayList;
 
-ArrayList *ArrayList_init(size_t, size_t);
+ArrayList ArrayList_init(size_t, size_t);
 void ArrayList_free(ArrayList *);
 void ArrayList_clear(ArrayList *);
 
